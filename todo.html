@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to-do-list</title>
+    <style>
+        body{
+            display: flex;
+            align-items:flex-start;
+            justify-content: center;
+        }
+        h2{
+            margin-left: 80px;
+        }
+        .container{
+            height: 350px;
+            width: 320px;
+            background-color: rgb(255, 255, 255);
+            margin-top: 100px;
+            padding-left: 28px;
+        }
+        input{
+            width: 220px;
+            height: 20px;
+        }
+        .search{
+            height: 25px;
+            background-color: rgb(9, 176, 237);
+            border: none;
+            color: white;
+        }
+        .box1{
+            display: flex;
+            height: 30px;
+            width: 276px;
+            background-color: rgb(226, 249, 168);
+            margin-top: 15px;
+            gap: 170px;
+            align-items: center;
+            padding:0px 3px 0px 3px;
+            border-radius: 5px;
+        }
+        a{
+            background-color: rgb(70, 241, 110);
+            padding-right: 5px;
+            padding-left: 5px;
+            border-radius: 3px;
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body bgcolor="blue">
+    <div class="container">
+        <h2>Todo App</h2>
+        <div class="input">
+            <input type="text" placeholder="search here">
+            <button class="search">search</button>
+        </div>
+        <div class="list">
+            <div class="box1">
+                <p>Any Ideas</p>
+                <a href="">Add</a>
+            </div>
+            <div class="box1">
+                <p>Any Ideas</p>
+                <a href="">Add</a>
+            </div>
+            <div class="box1">
+                <p>Any Ideas</p>
+                <a href="">Add</a>
+            </div>
+            <div class="box1">
+                <p>Any Ideas</p>
+                <a href="">Add</a>
+            </div>
+        </div>
+        <h2>Back <u>Home</u></h2>
+    </div>
+</body>
+</html>     
