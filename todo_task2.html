@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to-do-list</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 400px;
+            background: rgb(177, 240, 239);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .input-area {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            margin-right: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .task-list {
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        label {
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .deleteButton {
+            background-color: #dc3545;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .status {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        
+        <div class="input-area">
+            <input type="text" id="taskInput" placeholder="Add a new task..." />
+            <button id="addButton">Add</button>
+        </div>
+        
+        <div class="task-list">
+            <h2>Tasks</h2>
+            <ul id="taskList"></ul>
+        </div>
+        
+        <div class="status">
+            <h2>Status</h2>
+            <p>Completed: <span id="completedCount">0</span></p>
+            <p>Incomplete: <span id="incompleteCount">0</span></p>
+        </div>
+    </div>
+
+    <script>
+        const taskInput = document.getElementById('taskInput');
+        const addButton = document.getElementById('addButton');
+        const taskList = document.getElementById('taskList');
+        const completedCount = document.getElementById('completedCount');
+        const incompleteCount = document.getElementById('incompleteCount');
+
+        let totalTasks = 0;
+
+        addButton.addEventListener('click', () => {
+            const taskText = taskInput.value.trim();
+            if (taskText === '') return;
+
+            totalTasks++;
+            const li = document.createElement('li');
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.addEventListener('change', () => {
+                updateCounts();
+            });
+
+            const label = document.createElement('label');
+            label.textContent = taskText;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.classList.add('deleteButton');
+            deleteButton.addEventListener('click', () => {
+                li.remove();
+                totalTasks--;
+                updateCounts();
+            });
+
+            li.appendChild(checkbox);
+            li.appendChild(label);
+            li.appendChild(deleteButton);
+            taskList.appendChild(li);
+
+            taskInput.value = '';
+            updateCounts();
+        });
+
+        function updateCounts() {
+            const checkboxes = taskList.querySelectorAll('input[type="checkbox"]');
+            let completedTasks = 0;
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) completedTasks++;
+            });
+            completedCount.textContent = completedTasks;
+            incompleteCount.textContent = totalTasks - completedTasks;
+        }
+    </script>
+</body>
+</html>
